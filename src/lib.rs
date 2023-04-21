@@ -1,9 +1,11 @@
 #![deny(clippy::all)]
 
-#[macro_use]
-extern crate napi_derive;
+use napi_derive::napi;
+use dissolve::strip_html_tags;
 
 #[napi]
-fn sum(a: i32, b: i32) -> i32 {
-  a + b
+#[allow(dead_code)]
+fn html_text_content(input: String) -> String {
+  // convert Vec<String> to str in rust
+  strip_html_tags(input.as_ref()).join(" ")
 }
